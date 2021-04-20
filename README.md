@@ -34,9 +34,9 @@ When a consumer in the group has processed data then it would commit this offset
 ### Commit delivery semantics: 
 At most once (maybe be data loss), At least once. Exactly once. 
 
-
-
-
+&nbsp;
+&nbsp;
+&nbsp;
 ## Kafka Installation  
 
 Download Kafka from page: https://kafka.apache.org/downloads  
