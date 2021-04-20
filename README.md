@@ -1,9 +1,11 @@
 # Apache Kafka  
 
-## <u>Key Concepts</u>  
+## Key Concepts  
 
-### Topics: Stream of data (like table in a database)
-### Partitions: Topics are split into partitions and they are ordered. 
+### Topics: 
+Stream of data (like table in a database)
+### Partitions: 
+Topics are split into partitions and they are ordered. 
 ### Offset: Each message within a partition gets an incremental id called offset. Data is read by consumers within a partition in the order of offset
 ### Brokers: A kafka cluster consists of multiple brokers (Servers). 
 ### Bootstrap server: Every broker is a bootstrap server which has information for all other brokers. 
@@ -19,4 +21,6 @@ acks-All - producer will wait for leader and replicas to acknowledge - No data l
 ### Consumer group: Consumers read data in consumer groups and each consumer within a group reads from an exclusive partition.
 ### Commit: When a consumer in the group has processed data then it would commit this offset so that it is not read again. 
 ### Commit delivery semantics: At most once (maybe be data loss), At least once. Exactly once. 
+
+
  
