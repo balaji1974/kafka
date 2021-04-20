@@ -35,7 +35,10 @@ When a consumer in the group has processed data then it would commit this offset
 At most once (maybe be data loss), At least once. Exactly once. 
 
 
-## Kafka Installation
+
+
+## Kafka Installation  
+
 Download Kafka from page: https://kafka.apache.org/downloads  
 Unzip and copy it to your base folder  
 Add Kafka bin folder or bin\windows folder to your path variable  
@@ -49,8 +52,8 @@ Start Kafka next with the following command from the Kafka base folder:
 &nbsp;&nbsp;&nbsp;bin/kafka-server-start.sh config/server.properties  
 
 Incase of windows the command would be:  
-zookeeper-server-start.bat config\zookeeper.properties  
-kafka-server-start.bat config\server.properties  
+&nbsp;&nbsp;&nbsp;zookeeper-server-start.bat config\zookeeper.properties  
+&nbsp;&nbsp;&nbsp;kafka-server-start.bat config\server.properties  
 
 Kafka must be up and running now.  
 
