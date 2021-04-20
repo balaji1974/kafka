@@ -52,10 +52,33 @@ Start Kafka next with the following command from the Kafka base folder:
 &nbsp;&nbsp;&nbsp;bin/kafka-server-start.sh config/server.properties  
 
 Incase of windows the command would be:  
-&nbsp;&nbsp;&nbsp;zookeeper-server-start.bat config\zookeeper.properties  
-&nbsp;&nbsp;&nbsp;kafka-server-start.bat config\server.properties  
+&nbsp;&nbsp;&nbsp;zookeeper-server-start config\zookeeper.properties  
+&nbsp;&nbsp;&nbsp;kafka-server-start config\server.properties  
+
+To stop zookeepr on windows:  
+&nbsp;&nbsp;&nbsp;zookeeper-server-stop  
 
 Kafka must be up and running now.  
+
+&nbsp;
+&nbsp;
+&nbsp;
+## Kafka Commands    
+### Create a topic  
+kafka-topics --zookeeper localhost:2181 --topic my-topic --create --partitions 3 --replication-factor 1  
+
+### List topics  
+kafka-topics --zookeeper localhost:2181 --list  
+
+### Describe information about topic  
+kafka-topics --zookeeper localhost:2181 --topic my-topic --describe  
+
+### Delete topic 
+kafka-topics --zookeeper localhost:2181 --topic my-topic --delete  
+
+### Producer
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic my_topic  
+
 
 
 
