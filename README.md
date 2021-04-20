@@ -35,4 +35,26 @@ When a consumer in the group has processed data then it would commit this offset
 At most once (maybe be data loss), At least once. Exactly once. 
 
 
+## Kafka Installation
+Download Kafka from page: https://kafka.apache.org/downloads  
+Unzip and copy it to your base folder  
+Add Kafka bin folder or bin\windows folder to your path variable  
+Go to the kafka config folder and edit zookeeper.properties file and change the dataDir= to your desired location (probably inside Kakfa folder inside a data directory)  
+Go to the kafka config folder and edit server.properties file and change the log.dirs=/ to your desired location (probably inside Kakfa folder inside a data directory)  
+
+Start the zookeeper first with the following command from the Kafka base folder:   
+&nbsp;&nbsp;&nbsp;bin/zookeeper-server-start.sh config/zookeeper.properties   
+
+Start Kafka next with the following command from the Kafka base folder:   
+&nbsp;&nbsp;&nbsp;bin/kafka-server-start.sh config/server.properties  
+
+Incase of windows the command would be:  
+zookeeper-server-start.bat config\zookeeper.properties  
+kafka-server-start.bat config\server.properties  
+
+Kafka must be up and running now.  
+
+
+
+
  
