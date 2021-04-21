@@ -77,9 +77,39 @@ kafka-topics --zookeeper localhost:2181 --topic my-topic --describe
 kafka-topics --zookeeper localhost:2181 --topic my-topic --delete  
 
 ### Producer
-kafka-console-producer --broker-list 127.0.0.1:9092 --topic my_topic  
+kafka-console-producer --broker-list localhost:9092 --topic my_topic  
 
+### Adding Producer Properties  
+kafka-console-producer --broker-list localhost:9092 --topic my_topic --producer-property acks=all  
 
+### Producers with Key/Value  
+kafka-console-producer --broker-list localhost:9092 --topic my_topic --property parse.key=true --property key.separator=,  
+
+### Consumer (this will read messages from the time the consumer was launched)  
+kafka-console-consumer --bootstrap-server localhost:9092 --topic my_topic  
+
+### Consumer  
+kafka-console-consumer --bootstrap-server localhost:9092 --topic my_topic  --from-beginning  
+This will read all messages from the beggining that were produced   
+But ordering is per partition order and not total ordering   
+Also if one consumer from the same group consumed all messages from beginning then another consumer from the same group will not get messages from the beginning   
+
+### Consumers with Key/value  
+kafka-console-consumer --bootstrap-server localhost:9092 --topic my_topic --from-beginning --property print.key=true --property key.separator=,   
+
+### Consumer Group  
+kafka-console-consumer --bootstrap-server localhost:9092 --topic my_topic   --group my_topic_group  
+If multiple consumers start with the same group then messages will be consumed by each of them one by one in a round robin since they are all in the same group   
+ 
+### To List all consumer groups  
+kafka-consumer-groups --bootstrap-server localhost:9092 --list  
+
+### To see the details of a particular consumer group   
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group --describe   
+
+### To reset offsets in a group  
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group --topic my_topic --reset-offsets --to-earliest --execute   
+"to-earliest" which is to be beginning can be changed with other available options (check docmumentation)   
 
 
 
