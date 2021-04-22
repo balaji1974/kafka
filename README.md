@@ -111,6 +111,16 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group -
 kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group --topic my_topic --reset-offsets --to-earliest --execute   
 "to-earliest" which is to be beginning can be changed with other available options (check docmumentation)   
 
+&nbsp;
+&nbsp;
+&nbsp;
+## Kafka Sample Programs
+
+### Simple Java Producer
+1. This simple java producer project has two programs one with topic and value and another with topic, key and value. The program is simple and self explainatory.   
+
+ 
+
 
 
  
