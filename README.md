@@ -119,7 +119,19 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group -
 ### Simple Java Producer
 1. This simple java producer project has two programs one with topic and value and another with topic, key and value. The program is simple and self explainatory.   
 
- 
+2. The main dependency for this project is   
+```xml
+	<dependency>
+	    <groupId>org.apache.kafka</groupId>
+	    <artifactId>kafka-clients</artifactId>
+	    <version>2.8.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-simple</artifactId>
+	    <version>1.7.30</version>
+	</dependency>
+``` 
 
 
 
