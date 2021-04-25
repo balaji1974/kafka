@@ -135,7 +135,7 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group -
 
 
 ### Simple Java Consumer
-1. This simple java consumer project   
+1. This simple java consumer project which is self explainatory       
 
 2. The main dependency for this project is the same as before    
 ```xml
@@ -150,6 +150,26 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group -
 	    <version>1.7.30</version>
 	</dependency>
 ``` 
+
+3. If you start multiple consumers within the same group, the partitions are rebalanced and each consumer is assigned to a patition automatically by the kafka framework.    
+The same is the case while dropping consumeers also where the partitions are automatically rebalanced within the available consumers.    
+
+4. If you need to seek a particular partition and read out a range of offsets starting from a particular offset then I have a sample program called SimpleConsumerAssignAndSeek.java which does exactly this.    
+
+#### Important to note that an older client can always talk to newer brokers and newer clients can also talk to older brokers starting from Kafka 0.10.2 onwards   
+Link to configuring consumers:  https://kafka.apache.org/documentation/#consumerconfigs    
+Link to configuring producers:  https://kafka.apache.org/documentation/#producerconfigs     
+
+
+
+
+
+
+
+
+
+
+
 
 
  
