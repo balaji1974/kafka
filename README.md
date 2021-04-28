@@ -162,7 +162,7 @@ Link to configuring producers:  https://kafka.apache.org/documentation/#producer
 
 
 ### Twitter Producer   
-In this application we can monitor twittter for certian keywords and if we find tweets on them, we can stream them to our twitter producer.     
+In this application we can monitor twittter for certian keywords and if we find tweets on them, we can stream them using our twitter producer.    
 
 1. For this to work, we need to create a developer account with Twitter and create a new application and get the relevent API Key, API Secret Key, access token and its secret.   
 
