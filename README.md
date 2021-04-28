@@ -166,7 +166,19 @@ In this application we can monitor twittter for certian keywords and if we find 
 
 1. For this to work, we need to create a developer account with Twitter and create a new application and get the relevent API Key, API Secret Key, access token and its secret.   
 
-2. With this in place we need to add dependencies to pull our twitter client for java. The dependency for this is   
+2. Next start the zookeeper   
+bin/zookeeper-server-start.sh config/zookeeper.properties   
+
+Then start kafka   
+bin/kafka-server-start.sh config/server.properties   
+
+Then create a topic that we need   
+bin/kafka-topics.sh --zookeeper localhost:2181 --topic twitter_tweets --create --partitions 6 --replication-factor 1   
+
+Next create a console consumer to consume our streamed data from the producer with the following command   
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic twitter_tweets   
+
+3. With this in place we need to create a maven project add dependencies to pull our twitter client for java. The dependency for this is   
 ```xml
 <dependency>
   <groupId>com.twitter</groupId>
@@ -174,19 +186,21 @@ In this application we can monitor twittter for certian keywords and if we find 
   <version>2.2.0</version> <!-- or whatever the latest version is -->
 </dependency>
 ``` 
-Other than this, the other 2 dependciens are the same as our simple java producer sample program.   
+Other than this, the other 2 dependciens are the same as our simple java producer sample program that we already created   
 
-3. Creating a real time twitter monitoring client is a 4 step process as follows:   
+4. Creating a real time twitter monitoring client is a 4 step process as follows:   
 a. First create a twitter client   
 b. Next create a Kafka producer   
 c. Connect to the client and poll the messages based on our keywords   
 d. Iterate over the messages and send the message to the kafka producer   
 f. Run a client who will receive this steamed message from the Kafka producer in real time.   
 
-4. Also added Safe Producer and high throughput configurations. Please check this section to have a problem less producer    
+5. Also added safe producer and high throughput configurations. Two advanced configurations have also been commented out. Please check this section under the getKafKaProducer() method to have a problem less producer    
 
-5. The reference for twitter client can be found in the below URL:    
-https://github.com/twitter/hbc      
+6. The reference for twitter client can be found in the below URL:    
+https://github.com/twitter/hbc   
+
+
 
 
 

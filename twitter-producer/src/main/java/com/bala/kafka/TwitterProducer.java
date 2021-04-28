@@ -32,11 +32,12 @@ public class TwitterProducer {
 	private static final String CONSUMER_SECRET="XXXXX";
 	private static final String TOKEN="XXXXX";
 	private static final String SECRET="XXXXX";
+
 	
 	private static final String BOOT_STRAP_SERVER="localhost:9092";
 	private static final String TOPIC_NAME="twitter_tweets";
 
-	List<String> termsToFollow = Lists.newArrayList("kafka"); // 
+	List<String> termsToFollow = Lists.newArrayList("kafka","bitcoin","covid"); // 
 	
 	private static final Long TWITTER_POLLING_INTERVAL=5L;
 	
@@ -112,8 +113,14 @@ public class TwitterProducer {
 		properties.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(Integer.MAX_VALUE)); // Defaults to this setting
 		properties.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION,"5"); // Defaults to 5 
 		
+		//High throughput producer configuration (at the expense of some latency and higher CPU usage)
+		properties.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy"); // Good compression engine developed by google for text compression like JSON strings
+		properties.setProperty(ProducerConfig.LINGER_MS_CONFIG, "20"); // Will wait for 20sec before all the consolidating all messages and compressing and sending it over
+		properties.setProperty(ProducerConfig.BATCH_SIZE_CONFIG,Integer.toString(32*1024)); // 32KB batch size for messages 
 		
-		//
+		// These are advanced settings and never play with it unless you have a situation when the producer produces more than the broken can take 
+		//properties.setProperty(ProducerConfig.BUFFER_MEMORY_CONFIG,Integer.toString(32*1024*1024)); // This is the default setting 32MB and can be increased if needed
+		//properties.setProperty(ProducerConfig.MAX_BLOCK_MS_CONFIG, Integer.toString(60000)); // This is the default which is 60sec until the receiving is blocked if buffer is full. This can also be configured 
 		
 		return new KafkaProducer<String,String>(properties);
 	}
