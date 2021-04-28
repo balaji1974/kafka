@@ -162,28 +162,28 @@ Link to configuring producers:  https://kafka.apache.org/documentation/#producer
 
 
 ### Twitter Producer   
-In this application we can monitor twittter for certian keywords and if we find tweets on them, we can stream them to our twitter producer. 
+In this application we can monitor twittter for certian keywords and if we find tweets on them, we can stream them to our twitter producer.     
 
-1. For this to work, we need to create a developer account with Twitter and create a new application and get the relevent API Key, API Secret Key, access token and its secret.     
+1. For this to work, we need to create a developer account with Twitter and create a new application and get the relevent API Key, API Secret Key, access token and its secret.   
 
-2. With this in place we need to add dependencies to pull our twitter client for java. The dependency for this is    
+2. With this in place we need to add dependencies to pull our twitter client for java. The dependency for this is   
 ```xml
-	<dependency>
-      <groupId>com.twitter</groupId>
-      <artifactId>hbc-core</artifactId> <!-- or hbc-twitter4j -->
-      <version>2.2.0</version> <!-- or whatever the latest version is -->
-    </dependency>
+<dependency>
+  <groupId>com.twitter</groupId>
+  <artifactId>hbc-core</artifactId> <!-- or hbc-twitter4j -->
+  <version>2.2.0</version> <!-- or whatever the latest version is -->
+</dependency>
 ``` 
-Other than this, the other 2 dependciens are the same as our simple java producer sample program.     
+Other than this, the other 2 dependciens are the same as our simple java producer sample program.   
 
-3. Creating a real time twitter monitoring client is a 4 step process as follows:    
-a. First create a twitter client    
-b. Next create a Kafka producer    
-c. Connect to the client and poll the messages based on our keywords    
-d. Iterate over the messages and send the message to the kafka producer    
+3. Creating a real time twitter monitoring client is a 4 step process as follows:   
+a. First create a twitter client   
+b. Next create a Kafka producer   
+c. Connect to the client and poll the messages based on our keywords   
+d. Iterate over the messages and send the message to the kafka producer   
 f. Run a client who will receive this steamed message from the Kafka producer in real time.   
 
-4. The reference for twitter client can be found in the below URL:      
+4. The reference for twitter client can be found in the below URL:    
 https://github.com/twitter/hbc      
 
 
