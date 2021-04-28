@@ -183,7 +183,9 @@ c. Connect to the client and poll the messages based on our keywords
 d. Iterate over the messages and send the message to the kafka producer   
 f. Run a client who will receive this steamed message from the Kafka producer in real time.   
 
-4. The reference for twitter client can be found in the below URL:    
+4. Also added Safe Producer and high throughput configurations. Please check this section to have a problem less producer    
+
+5. The reference for twitter client can be found in the below URL:    
 https://github.com/twitter/hbc      
 
 

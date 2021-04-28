@@ -28,14 +28,14 @@ import com.twitter.hbc.httpclient.auth.OAuth1;
 
 public class TwitterProducer {
 	
-	private static final String CONSUMER_KEY="XXX";
-	private static final String CONSUMER_SECRET="XXX";
-	private static final String TOKEN="XXX";
-	private static final String SECRET="XXX";
+	private static final String CONSUMER_KEY="XXXXX"; 
+	private static final String CONSUMER_SECRET="XXXXX";
+	private static final String TOKEN="XXXXX";
+	private static final String SECRET="XXXXX";
 	
 	private static final String BOOT_STRAP_SERVER="localhost:9092";
 	private static final String TOPIC_NAME="twitter_tweets";
-	
+
 	List<String> termsToFollow = Lists.newArrayList("kafka"); // 
 	
 	private static final Long TWITTER_POLLING_INTERVAL=5L;
@@ -105,6 +105,16 @@ public class TwitterProducer {
 		properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOT_STRAP_SERVER);
 		properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 		properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+		
+		//Safe Producer Configuration 
+		properties.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");  // Default to false
+		properties.setProperty(ProducerConfig.ACKS_CONFIG, "all"); // Defaults to 1 
+		properties.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(Integer.MAX_VALUE)); // Defaults to this setting
+		properties.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION,"5"); // Defaults to 5 
+		
+		
+		//
+		
 		return new KafkaProducer<String,String>(properties);
 	}
 
