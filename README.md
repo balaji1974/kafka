@@ -201,6 +201,38 @@ f. Run a client who will receive this steamed message from the Kafka producer in
 https://github.com/twitter/hbc   
 
 
+### Elasticsearch Basic commands:   
+
+Start Elasticserch after installation    
+./bin/elasticsearch   
+
+Query the server status   
+GET localhost:9200/   
+
+Create index    
+PUT localhost:9200/twitter   
+
+Query the index   
+GET localhost:9200/\_cat/indices   
+
+Insert Data (tweets is the index name and 1 is id of the index)   
+PUT localhost:9200/twitter/tweets/1   
+Json Body   
+{    
+&nbsp;&nbsp;&nbsp;"student_name": "Balaji",   
+&nbsp;&nbsp;&nbsp;"course_name": "ElasticSearch",    
+&nbsp;&nbsp;&nbsp;"level":"beginners"   
+}   
+
+View the inserted data   
+GET localhost:9200/twitter/tweets/1   
+
+Delete the data   
+DELETE localhost:9200/twitter/tweets/1   
+
+Delete the index   
+DELETE localhost:9200/twitter   
+
 
 
 
