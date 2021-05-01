@@ -201,8 +201,9 @@ f. Run a client who will receive this steamed message from the Kafka producer in
 https://github.com/twitter/hbc   
 
 
-### Elasticsearch Basic commands:   
+### Elasticsearch Basic commands & Elasticsearch consumer:    
 
+# Basics of Elastic Search
 Start Elasticserch after installation    
 ./bin/elasticsearch   
 
@@ -232,6 +233,35 @@ DELETE localhost:9200/twitter/tweets/1
 
 Delete the index   
 DELETE localhost:9200/twitter   
+
+1. To add our twitter consumer data to Elastic search we need to add the following two depenedencies:    
+
+```xml
+<dependency>
+    <groupId>org.elasticsearch.client</groupId>
+    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+    <version>7.12.1</version>
+</dependency>
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.6</version>
+</dependency>
+```
+
+2. Now create an elastic search client that will be used to insert data into elasticsearch. The steps are as follows:    
+Create a Kafka consumer that will listen to the topic   
+Poll every 100 milliseconds and iterate through the consumer records that has been fetched based.    
+We have set the Kafka client parameters ENABLE_AUTO_COMMIT_CONFIG to false and set MAX_POLL_RECORDS_CONFIG to 100. So from Kafka topic every 100 records will be fetched.    
+Create an elastic search IndexRequest and pass the Kafka consumerRecords that were fetched as a bulk into it   
+Add this index request that was created into the elastic search BulkRequest   
+Since autocommit is false for every 100 records fetched BulkRequest will be committed and BulkResponse will be returned.   
+We can always iterate the BulkResponse if we want to check the response details.   
+Finally commitSync() on the kafka consumer.  
+Note, that jsonParser was used from Gson library to extact the tweet id 'id_str' that was used as an index in the IndexRequest used to store inside Elasticsearch.   
+
+
+
 
 
 
