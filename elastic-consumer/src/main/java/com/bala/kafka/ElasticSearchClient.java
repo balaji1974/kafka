@@ -12,9 +12,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.elasticsearch.action.bulk.BulkRequest;
-import org.elasticsearch.action.bulk.BulkResponse;
+//import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -33,13 +32,12 @@ public class ElasticSearchClient {
 	private static final String ELASTIC_SERVER_PROTOCOL1="http";
 	
 	private static final String INDEX_NAME="twitter";
-	private static final String INDEX_TYPE="tweets";
+	//private static final String INDEX_TYPE="tweets"; // Type has been deprecated 
 
 	private static final String BOOT_STRAP_SERVER="localhost:9092";
 	private static final String GROUP_ID="kafka-elasticsearch";
 	private static final String TOPIC_NAME="twitter_tweets";
-	
-	private static JsonParser jsonParser=new JsonParser();
+
 	
 	public static void main(String str[]) throws IOException {
 		//First create a elastic search client that will be used to insert data into elasticsearch
@@ -66,11 +64,11 @@ public class ElasticSearchClient {
 					// Twitter feed specific ID
 					String id=extractIDFromTweet(consumerRecord.value());
 					
-					IndexRequest indexRequest=new IndexRequest(
-							INDEX_NAME,
-							INDEX_TYPE, 
-							id // This is to make the consumer idempotent - unique id  is inserted 
-							).source(consumerRecord.value(),XContentType.JSON);
+					IndexRequest indexRequest=new IndexRequest(INDEX_NAME);
+					
+					indexRequest.id(id);
+					//indexRequest.index(INDEX_TYPE);
+					indexRequest.source(consumerRecord.value(),XContentType.JSON);
 					
 					// Not need the below line as it has been replaced by Bulk Request
 					//IndexResponse indexResponse=client.index(indexRequest, RequestOptions.DEFAULT);
@@ -80,7 +78,7 @@ public class ElasticSearchClient {
 					// Not needed as we are getting id already
 					//String id=indexResponse.getId();
 					
-					//logger.info(indexResponse.getId());
+					//logger.info(id);
 				}
 				catch(NullPointerException e) {
 					logger.warn("Skipping bad data : "+consumerRecord.value());
@@ -88,7 +86,8 @@ public class ElasticSearchClient {
 				
 			}
 			if(recordCount>0) {
-				BulkResponse bulkResponse=client.bulk(bulkRequest, RequestOptions.DEFAULT);
+				//BulkResponse bulkResponse= // Not used and can be used later if needed 
+						client.bulk(bulkRequest, RequestOptions.DEFAULT);
 				
 				logger.info("Committing the offsets");
 				kafkaConsumer.commitSync(); 
@@ -110,7 +109,7 @@ public class ElasticSearchClient {
 	
 	private static String extractIDFromTweet(String tweetJson) {
 	// Gson library 
-	return jsonParser.parse(tweetJson)
+	return JsonParser.parseString(tweetJson)
 			.getAsJsonObject()
 			.get("id_str")
 			.getAsString();

@@ -234,6 +234,9 @@ DELETE localhost:9200/twitter/tweets/1
 Delete the index   
 DELETE localhost:9200/twitter   
 
+Query all records
+http://localhost:9200/twitter/\_search?pretty=true&q=\*:\*   
+
 1. To add our twitter consumer data to Elastic search we need to add the following two depenedencies:    
 
 ```xml
@@ -259,6 +262,9 @@ Since autocommit is false for every 100 records fetched BulkRequest will be comm
 We can always iterate the BulkResponse if we want to check the response details.   
 Finally commitSync() on the kafka consumer.  
 Note, that jsonParser was used from Gson library to extact the tweet id 'id_str' that was used as an index in the IndexRequest used to store inside Elasticsearch.   
+
+Finally we can query our inserted record using postman method GET http://localhost:9200/twitter/\_doc/id_str where id_str is like 1387826975499300874 which is the id_str from twitter data.    
+
 
 
 
