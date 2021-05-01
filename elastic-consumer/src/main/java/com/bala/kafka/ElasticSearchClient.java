@@ -135,7 +135,7 @@ public class ElasticSearchClient {
 		properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
 		properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); //"latest/none" is also possible smallest/largest 
 		properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // Disable auto commit of offsets 
-		properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "100"); // We only can get 20 records max before which we need to commit 
+		properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "100"); // We only can get 100 records max before which we need to commit 
 		
 		KafkaConsumer<String, String> kafkaConsumer=new KafkaConsumer<String,String>(properties);
 		kafkaConsumer.subscribe(Arrays.asList(TOPIC_NAME));
