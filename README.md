@@ -111,6 +111,18 @@ kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group -
 kafka-consumer-groups --bootstrap-server localhost:9092 --group my_topic_group --topic my_topic --reset-offsets --to-earliest --execute   
 "to-earliest" which is to be beginning can be changed with other available options (check docmumentation)   
 
+
+# Advise on Partitions and Replication Factors:    
+Best practise for partiitions:    
+>6 Brokers -> Partitions = 2 * no. of borkers   
+<12 Brokers -> Partitions = 1 * no. of brokers   
+Also look at the no. of consumers and make partitions equals to or greater than the consumers in pipeline    
+Do not have more than 2000 to 4000 partitions per broker   
+Do not have more than 20000 partitions across the entire Kafka cluster    
+
+Best pratise for replications:    
+Must be altest 2, ideal is 3  (but for this we need atleast 3 brokers - best practise) and maximum is 4  
+
 &nbsp;
 &nbsp;
 &nbsp;
@@ -264,6 +276,8 @@ Finally commitSync() on the kafka consumer.
 Note, that jsonParser was used from Gson library to extact the tweet id 'id_str' that was used as an index in the IndexRequest used to store inside Elasticsearch.   
 
 Finally we can query our inserted record using postman method GET http://localhost:9200/twitter/\_doc/id_str where id_str is like 1387826975499300874 which is the id_str from twitter data.    
+
+
 
 
 
