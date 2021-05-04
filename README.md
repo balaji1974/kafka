@@ -128,7 +128,7 @@ Must be altest 2, ideal is 3  (but for this we need atleast 3 brokers - best pra
 
 ## Kafka Sample Programs
 
-### 1# Simple Java Producer
+### 1) Simple Java Producer
 1. This simple java producer project has two programs one with topic and value and another with topic, key and value. The program is simple and self explainatory.   
 
 2. The main dependency for this project is   
@@ -173,7 +173,7 @@ Link to configuring consumers:  https://kafka.apache.org/documentation/#consumer
 Link to configuring producers:  https://kafka.apache.org/documentation/#producerconfigs     
 
 
-### Twitter Producer   
+### 2) Twitter Producer   
 In this application we can monitor twittter for certian keywords and if we find tweets on them, we can stream them using our twitter producer.    
 
 1. For this to work, we need to create a developer account with Twitter and create a new application and get the relevent API Key, API Secret Key, access token and its secret.   
@@ -213,7 +213,7 @@ f. Run a client who will receive this steamed message from the Kafka producer in
 https://github.com/twitter/hbc   
 
 
-### Elasticsearch Basic commands & Elasticsearch consumer:    
+### 3) Elasticsearch Basic commands & Elasticsearch consumer:    
 
 # Basics of Elastic Search
 Start Elasticserch after installation    
@@ -250,7 +250,7 @@ Query all records
 GET localhost:9200/twitter/\_search?pretty=true&q=\*:\*    
 
 
-### Elastic Consumer    
+### 4) Elastic Consumer    
 1. To add our twitter consumer data to Elastic search we need to add the following two depenedencies:    
 
 ```xml
@@ -282,11 +282,11 @@ GET localhost:9200/twitter/\_doc/id_str
 where id_str is like 1387826975499300874 which is the id_str from twitter data.    
 
 
-### SpringBoot Producer     
+### 5) SpringBoot Producer     
 
 
 
-### SpringBoot Consumer     
+### 6) SpringBoot Consumer     
 
 
 
