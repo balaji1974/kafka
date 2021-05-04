@@ -317,7 +317,56 @@ d. Next create a Controller class in which we listen for messages that are produ
 e. Start the server on a different port than the producer and we can see immediately all the messages that were produced so far being consumed and printed on the console.      
 
 
+### 7) SpringBoot Kafka Producer (Project name: springboot-kafka-producer) 
 
+a. Our springboot-student-producer project was fine tuned to only work for Student class and in real production senariois we would need to create individual ProducerFactory and a KafkaTemplate for each Model object which is not an ideal solution. So we can generalize this by using our own serialization method instead of using the spring-kafka serialization.    
+
+b. In order to use this we can add a new library called Gson from google for serialization/deserialization purpose. 
+```xml
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+</dependency>
+```
+
+c. Next we create a bean using Gson in our configuration class.   
+@Bean   
+public Gson gson() {   
+&nbsp;&nbsp;&nbsp;return new Gson();   
+}
+
+d. We now change ProducerFactory and KafkaTemplate to take in String value instead of other objects like Students and we also change our serialization from JsonSerializier to StringSerializer in our server configuration. With this change this configuration class can be used for any type of objects in future.   
+
+e. Next in our controller class inject the Gson class and in our post mapping after receiving the Student object, convert it to a json object using gson.toJson(student) before sending it through the kafka producer.   
+
+f. So with a few slight changes our Student producer it can now be used for sending any type of Object.    
+
+
+### 8) SpringBoot Kafka Consumer (Project name: springboot-kafka-consumer) 
+
+a. Our springboot-student-consumer project was fine tuned to only work for Student class and in real production senariois we would need to create individual ConsumerFactory and ConcurrentKafkaListenerContainerFactory for each Model object which is not an ideal solution. So we can generalize this by using our own serialization method instead of using the spring-kafka serialization.    
+
+b. In order to use this we can add a new library called Gson from google for serialization/deserialization purpose. 
+```xml
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+</dependency>
+```
+
+c. Next we create a bean using Gson in our configuration class.   
+@Bean   
+public Gson gson() {   
+&nbsp;&nbsp;&nbsp;return new Gson();   
+}
+
+d. We now change ConsumerFactory and ConcurrentKafkaListenerContainerFactory to take in String value instead of other objects like Students and we also change our deserialization from JsonDeserializier to StringDeserializer in our server configuration. With this change this configuration class can be used for consuming any type of objects in future.   
+
+e. Next in our controller class inject the Gson class and in our getStudentsFromKafka method get the Student string, convert it to a json object using gson.fromJson(string, Student.class)) before printing it on the cosole.   
+f. So with a few slight changes our Student consumer it can now be used for consuming any type of Object.   
+
+
+### 9) Kafka Streams 
 
 
 

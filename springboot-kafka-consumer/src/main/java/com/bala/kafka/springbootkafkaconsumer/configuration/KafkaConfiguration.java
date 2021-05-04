@@ -10,9 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import com.bala.kafka.springbootkafkaconsumer.model.Student;
+import com.google.gson.Gson;
 
 @Configuration
 public class KafkaConfiguration {
@@ -20,17 +19,22 @@ public class KafkaConfiguration {
 	private static final String CONSUMER_GROUP_ID="student_topic_group1";
 	
 	@Bean
-	public ConsumerFactory<String,Student> studentConsumerFactory() {
-		return new DefaultKafkaConsumerFactory<String, Student>(getServerConfiguration(), 
-				new StringDeserializer(), new JsonDeserializer<>(Student.class, false));  // false is important or else it will serialize using producer object
+	public ConsumerFactory<String,String> consumerFactory() {
+		return new DefaultKafkaConsumerFactory<String, String>(getServerConfiguration(), 
+				new StringDeserializer(), new StringDeserializer());
 	}
 	
 	@Bean
-	public ConcurrentKafkaListenerContainerFactory<String, Student> kafkaListenerContainerFactory() {
-		ConcurrentKafkaListenerContainerFactory<String, Student> concurrentKafkaListenerContainerFactory
+	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
+		ConcurrentKafkaListenerContainerFactory<String, String> concurrentKafkaListenerContainerFactory
 						=new ConcurrentKafkaListenerContainerFactory<>();
-		concurrentKafkaListenerContainerFactory.setConsumerFactory(studentConsumerFactory());
+		concurrentKafkaListenerContainerFactory.setConsumerFactory(consumerFactory());
 		return concurrentKafkaListenerContainerFactory;
+	}
+	
+	@Bean
+	Gson gson() {
+		return new Gson();
 	}
 	
 
@@ -38,7 +42,7 @@ public class KafkaConfiguration {
 		Map<String,Object> serverConfiguration=new HashMap<>();
 		serverConfiguration.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOT_STRAP_SERVER);
 		serverConfiguration.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		serverConfiguration.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+		serverConfiguration.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		serverConfiguration.put(ConsumerConfig.GROUP_ID_CONFIG, CONSUMER_GROUP_ID);
 		return serverConfiguration;
 	}
