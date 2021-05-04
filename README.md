@@ -146,7 +146,7 @@ Must be altest 2, ideal is 3  (but for this we need atleast 3 brokers - best pra
 ``` 
 
 
-### Simple Java Consumer
+### 2) Simple Java Consumer
 1. This simple java consumer project which is self explainatory       
 
 2. The main dependency for this project is the same as before    
@@ -173,7 +173,7 @@ Link to configuring consumers:  https://kafka.apache.org/documentation/#consumer
 Link to configuring producers:  https://kafka.apache.org/documentation/#producerconfigs     
 
 
-### 2) Twitter Producer   
+### 3) Twitter Producer   
 In this application we can monitor twittter for certian keywords and if we find tweets on them, we can stream them using our twitter producer.    
 
 1. For this to work, we need to create a developer account with Twitter and create a new application and get the relevent API Key, API Secret Key, access token and its secret.   
@@ -213,7 +213,7 @@ f. Run a client who will receive this steamed message from the Kafka producer in
 https://github.com/twitter/hbc   
 
 
-### 3) Elasticsearch Basic commands & Elasticsearch consumer:    
+### Elasticsearch Basic commands:    
 
 # Basics of Elastic Search
 Start Elasticserch after installation    
