@@ -366,7 +366,7 @@ e. Next in our controller class inject the Gson class and in our getStudentsFrom
 f. So with a few slight changes our Student consumer it can now be used for consuming any type of Object.   
 
 
-### 9) Kafka Streams 
+# Next up is Kafka streams and I have created a seperate repository to this, as the subject of Streams API using Apache Kafka is quite big     
 
 
 
