@@ -247,7 +247,7 @@ Delete the index
 DELETE localhost:9200/twitter   
 
 Query all records
-http://localhost:9200/twitter/_search?pretty=true&q=*:*
+http://localhost:9200/twitter/\_search?pretty=true&q=*:*
 
 1. To add our twitter consumer data to Elastic search we need to add the following two depenedencies:    
 
