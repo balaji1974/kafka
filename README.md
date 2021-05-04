@@ -128,7 +128,7 @@ Must be altest 2, ideal is 3  (but for this we need atleast 3 brokers - best pra
 
 ## Kafka Sample Programs
 
-### 1) Simple Java Producer
+### 1) Simple Java Producer (Project name: simple-java-producer)    
 1. This simple java producer project has two programs one with topic and value and another with topic, key and value. The program is simple and self explainatory.   
 
 2. The main dependency for this project is   
@@ -146,7 +146,7 @@ Must be altest 2, ideal is 3  (but for this we need atleast 3 brokers - best pra
 ``` 
 
 
-### 2) Simple Java Consumer
+### 2) Simple Java Consumer (Project name: simple-java-consumer)    
 1. This simple java consumer project which is self explainatory       
 
 2. The main dependency for this project is the same as before    
@@ -173,7 +173,7 @@ Link to configuring consumers:  https://kafka.apache.org/documentation/#consumer
 Link to configuring producers:  https://kafka.apache.org/documentation/#producerconfigs     
 
 
-### 3) Twitter Producer   
+### 3) Twitter Producer (Project name: twitter-producer)   
 In this application we can monitor twittter for certian keywords and if we find tweets on them, we can stream them using our twitter producer.    
 
 1. For this to work, we need to create a developer account with Twitter and create a new application and get the relevent API Key, API Secret Key, access token and its secret.   
@@ -250,7 +250,7 @@ Query all records
 GET localhost:9200/twitter/\_search?pretty=true&q=\*:\*    
 
 
-### 4) Elastic Consumer    
+### 4) Elastic Consumer (Project name: elastic-consumer)    
 1. To add our twitter consumer data to Elastic search we need to add the following two depenedencies:    
 
 ```xml
@@ -282,11 +282,29 @@ GET localhost:9200/twitter/\_doc/id_str
 where id_str is like 1387826975499300874 which is the id_str from twitter data.    
 
 
-### 5) SpringBoot Producer     
+### 5) SpringBoot Producer (Project name: springboot-kafka-producer)      
+a. Go to spring initilizer and create a project with the following dependencies:    
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.kafka</groupId>
+	<artifactId>spring-kafka</artifactId>
+</dependency>
+```
+
+b. Create a model object called Student that we need to produce to the topic.   
+
+c. Create a configuration class which creates two beans, a ProducerFactory and a KafkaTemplate using the Student model class.    
+
+d. Next create a Controller class in which we can autowire the KakfaTempalate using which we can send messages to our topic.     
+
+e. Start the server and use postman to produce messages. The body of the message must be a json representing the Student model.      
 
 
-
-### 6) SpringBoot Consumer     
+### 6) SpringBoot Consumer (Project name: springboot-kafka-consumer)       
 
 
 
