@@ -128,7 +128,7 @@ Must be altest 2, ideal is 3  (but for this we need atleast 3 brokers - best pra
 
 ## Kafka Sample Programs
 
-### Simple Java Producer
+### <u>Simple Java Producer</u>
 1. This simple java producer project has two programs one with topic and value and another with topic, key and value. The program is simple and self explainatory.   
 
 2. The main dependency for this project is   
