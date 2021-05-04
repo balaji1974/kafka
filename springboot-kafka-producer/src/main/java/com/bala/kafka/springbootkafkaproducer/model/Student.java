@@ -1,6 +1,9 @@
 package com.bala.kafka.springbootkafkaproducer.model;
 
 public class Student {
+	public Student() {
+		super();
+	}
 	private Long id;
 	private String name;
 	private String phoneno;

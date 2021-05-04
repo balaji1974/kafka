@@ -1,4 +1,4 @@
-package com.bala.kafka.springbootkafkaconsumer.configuration;
+package com.bala.kafka.springbootstudentconsumer.configuration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,9 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import com.bala.kafka.springbootkafkaconsumer.model.Student;
+import com.bala.kafka.springbootstudentconsumer.model.Student;
+
+
 
 @Configuration
 public class KafkaConfiguration {

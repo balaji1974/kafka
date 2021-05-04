@@ -1,4 +1,4 @@
-package com.bala.kafka.springbootkafkaconsumer.model;
+package com.bala.kafka.springbootstudentproducer.model;
 
 public class Student {
 	public Student() {
@@ -31,10 +31,6 @@ public class Student {
 	}
 	public void setPhoneno(String phoneno) {
 		this.phoneno = phoneno;
-	}
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", phoneno=" + phoneno + "]";
 	}
 	
 	

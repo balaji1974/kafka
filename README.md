@@ -282,7 +282,7 @@ GET localhost:9200/twitter/\_doc/id_str
 where id_str is like 1387826975499300874 which is the id_str from twitter data.    
 
 
-### 5) SpringBoot Producer (Project name: springboot-kafka-producer)      
+### 5) SpringBoot Student Producer (Project name: springboot-student-producer)      
 a. Go to spring initilizer and create a project with the following dependencies:    
 ```xml
 <dependency>
@@ -297,14 +297,26 @@ a. Go to spring initilizer and create a project with the following dependencies:
 
 b. Create a model object called Student that we need to produce to the topic.   
 
-c. Create a configuration class which creates two beans, a ProducerFactory and a KafkaTemplate using the Student model class.    
+c. Create a configuration class which creates a ProducerFactory and a KafkaTemplate using the Student model class.    
 
 d. Next create a Controller class in which we can autowire the KakfaTempalate using which we can send messages to our topic.     
 
 e. Start the server and use postman to produce messages. The body of the message must be a json representing the Student model.      
 
 
-### 6) SpringBoot Consumer (Project name: springboot-kafka-consumer)       
+### 6) SpringBoot Student Consumer (Project name: springboot-student-consumer)      
+
+a. Add the same dependencies as above for the consumer.    
+
+b. Create a model object called Student that we need to consume from the topic.   
+
+c. Create a configuration class which creates a ConsumerFactory and a ConcurrentKafkaListenerContainerFactory using the Student model class.   
+
+d. Next create a Controller class in which we listen for messages that are produced on the topic using the @KafkaListener(topics=TOPIC_NAME) annotation.    
+
+e. Start the server on a different port than the producer and we can see immediately all the messages that were produced so far being consumed and printed on the console.      
+
+
 
 
 

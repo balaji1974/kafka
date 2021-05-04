@@ -1,4 +1,4 @@
-package com.bala.kafka.springbootkafkaconsumer.model;
+package com.bala.kafka.springbootstudentconsumer.model;
 
 public class Student {
 	public Student() {
