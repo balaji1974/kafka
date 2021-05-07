@@ -340,7 +340,7 @@ d. We now change ProducerFactory and KafkaTemplate to take in String value inste
 e. Next in our controller class inject the Gson class and in our post mapping after receiving the Student object, convert it to a json object using gson.toJson(student) before sending it through the kafka producer.   
 
 f. So with a few slight changes our Student producer it can now be used for sending any type of Object.    
-
+ 
 
 ### 8) SpringBoot Kafka Consumer (Project name: springboot-kafka-consumer) 
 
@@ -364,6 +364,14 @@ d. We now change ConsumerFactory and ConcurrentKafkaListenerContainerFactory to 
 
 e. Next in our controller class inject the Gson class and in our getStudentsFromKafka method get the Student string, convert it to a json object using gson.fromJson(string, Student.class)) before printing it on the cosole.   
 f. So with a few slight changes our Student consumer it can now be used for consuming any type of Object.   
+
+
+### 9) Restful Kafka Producer - Moving all the configurations to application.propeties file (Project name: restful-kafka-producer)    
+a. In this project we move all our configurations from configuration files into the properties file.    
+
+b. Also, we create a service layer and inject a KafkaTemplate which automatically picks up this configuration and the send method of this template sends message to our topic. 
+
+c. By this we can use this service layer for any application that we need in future where our requirement is to produce message to a kafka topic.    
 
 
 # Next up is Kafka streams and I have created a seperate repository for this, as the subject of Streams API using Apache Kafka is quite big     
