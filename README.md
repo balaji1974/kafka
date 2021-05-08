@@ -366,24 +366,32 @@ e. Next in our controller class inject the Gson class and in our getStudentsFrom
 f. So with a few slight changes our Student consumer it can now be used for consuming any type of Object.   
 
 
-### 9) Restful Kafka Producer - Moving all the configurations to application.propeties file (Project name: restful-kafka-producer)    
-a. In this project we move all our configurations from configuration files into the properties file.    
+### 9) Restful Kafka Producer - Moving all the configurations to application.propeties file and sending Objects using JsonSerializer(Project name: restful-kafka-producer)    
+a. In this project we move all our producer configurations from java into the properties file.    
 
-b. Also, we create a service layer and inject a KafkaTemplate which automatically picks up this configuration and the send method of this template sends message to our topic. 
+b. Also, we create a service layer and inject a KafkaTemplate which automatically picks up this configuration and the send method of this template, sends message to our topic.    
 
 c. By this we can use this service layer for any application that we need in future where our requirement is to produce message to a kafka topic.    
 
+d. We also use the below configuration to send value directly using Json seriliazer object instead of String serializer. The configuration for this is given below.     
+spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer    
+
+e. Also we do not want to send any type headers along with our JsonSerializer property and we will let the client handle it by setting the below property.    
+spring.kafka.producer.properties.spring.json.add.type.headers=false    
+
+
+### 10) Object Kafka Consumer - Moving all configurations to application.properties and receiving Objects using JsonSerializer(Project name: object-kafka-receiver)    
+a. In this project we move all our consumer configurations from java into the properties file.  
+
+b. We register the Kafka consumer and receive the messages using the below annotation in our controller class    
+@KafkaListener(topics="student_topic")    
+
+c. We also use the below configuration to receive value directly using Json seriliazer object instead of String serializer. The configuration for this is given below.     
+spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer    
+
+d. We use the below property mapping to map the recevied Json object into our own customized object    
+spring.kafka.consumer.properties.spring.json.value.default.type: com.bala.kafka.objectkafkaconsumer.model.Student    
+spring.kafka.consumer.properties.spring.json.type.mapping=student:com.bala.kafka.objectkafkaconsumer.model.Student    
 
 # Next up is Kafka streams and I have created a seperate repository for this, as the subject of Streams API using Apache Kafka is quite big     
 
-
-
-
-
-
-
-
-
-
-
- 

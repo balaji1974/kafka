@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bala.kafka</groupId>
-	<artifactId>restful-kafka-producer</artifactId>
+	<artifactId>object-kafka-consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>restful-kafka-producer</name>
+	<name>object-kafka-consumer</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -47,6 +47,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
