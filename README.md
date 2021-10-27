@@ -52,11 +52,23 @@ Start Kafka next with the following command from the Kafka base folder:
 &nbsp;&nbsp;&nbsp;bin/kafka-server-start.sh config/server.properties  
 
 Incase of windows the command would be:  
-&nbsp;&nbsp;&nbsp;zookeeper-server-start config\zookeeper.properties  
-&nbsp;&nbsp;&nbsp;kafka-server-start config\server.properties  
+```xml
+To start ZooKeeper 
+bin\windows\zookeeper-server-start config\zookeeper.properties
+ 
+To start Kafka
+bin\windows\kafka-server-start config\server.properties
+
+To start another instance of Kafka from the same kafka folder
+bin\windows\kafka-server-start config\server.properties --override broker.id=2 --override log.dirs=./logs/kafka2-logs --override listeners=PLAINTEXT://localhost:9093
+
+To stop Kafka on windows:
+bin\windows\kafka-server-stop
 
 To stop zookeepr on windows:  
-&nbsp;&nbsp;&nbsp;zookeeper-server-stop  
+bin\windows\zookeeper-server-stop  
+```
+
 
 Kafka must be up and running now.  
 
